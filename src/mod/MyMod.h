@@ -2,7 +2,7 @@
 
 #include "ll/api/mod/NativeMod.h"
 
-namespace my_mod {
+namespace pland_fly {
 
 class MyMod {
 
@@ -30,4 +30,9 @@ private:
     ll::mod::NativeMod& mSelf;
 };
 
-} // namespace my_mod
+namespace event {
+void listen();
+void removeListener();
+} // namespace event
+
+} // namespace pland_fly

@@ -2,7 +2,7 @@
 
 #include "ll/api/mod/RegisterHelper.h"
 
-namespace my_mod {
+namespace pland_fly {
 
 MyMod& MyMod::getInstance() {
     static MyMod instance;
@@ -18,15 +18,17 @@ bool MyMod::load() {
 bool MyMod::enable() {
     getSelf().getLogger().debug("Enabling...");
     // Code for enabling the mod goes here.
+    event::listen();
     return true;
 }
 
 bool MyMod::disable() {
     getSelf().getLogger().debug("Disabling...");
     // Code for disabling the mod goes here.
+    event::removeListener();
     return true;
 }
 
-} // namespace my_mod
+} // namespace pland_fly
 
-LL_REGISTER_MOD(my_mod::MyMod, my_mod::MyMod::getInstance());
+LL_REGISTER_MOD(pland_fly::MyMod, pland_fly::MyMod::getInstance());
