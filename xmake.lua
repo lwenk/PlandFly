@@ -1,19 +1,19 @@
 add_rules("mode.debug", "mode.release")
 
 add_repositories("levimc-repo https://github.com/LiteLDev/xmake-repo.git")
-add_repositories("engsr6982-repo https://github.com/engsr6982/xmake-repo.git")
+add_repositories("iceblcokmc https://github.com/IceBlcokMC/xmake-repo.git")
 
 -- add_requires("levilamina x.x.x") for a specific version
 -- add_requires("levilamina develop") to use develop version
 -- please note that you should add bdslibrary yourself if using dev version
 if is_config("target_type", "server") then
-    add_requires("levilamina 1.4.1", {configs = {target_type = "server"}})
+    add_requires("levilamina 26.10.*", {configs = {target_type = "server"}})
 else
     add_requires("levilamina", {configs = {target_type = "client"}})
 end
 
-add_requires("pland 0.13.0")
-add_requires("levibuildscript 0.5.0")
+add_requires("pland 0.20.*")
+add_requires("levibuildscript")
 
 if not has_config("vs_runtime") then
     set_runtimes("MD")
@@ -29,7 +29,7 @@ target("PlandFly") -- Change this to your mod name.
     add_rules("@levibuildscript/linkrule")
     add_rules("@levibuildscript/modpacker")
     add_cxflags( "/EHa", "/utf-8", "/W4", "/w44265", "/w44289", "/w44296", "/w45263", "/w44738", "/w45204")
-    add_defines("NOMINMAX", "UNICODE","_HAS_CXX23=1")
+    add_defines("NOMINMAX", "UNICODE","_HAS_CXX23=1","LL_PLAT_S")
     add_packages("levilamina","pland")
     set_exceptions("none") -- To avoid conflicts with /EHa.
     set_kind("shared")
