@@ -2,6 +2,7 @@
 #include "mc/world/level/GameType.h"
 #include "mod/MyMod.h"
 #include "pland/Global.h"
+#include "pland/enums/LandRole.h"
 
 #include <ll/api/event/EventBus.h>
 #include <ll/api/event/Listener.h>
@@ -24,9 +25,9 @@ inline bool PreCheckLandExistsAndPermission(LandID landId, mce::UUID const& uuid
     auto& landRegistry = land::PLand::getInstance().getLandRegistry();
     auto  land         = landRegistry.getLand(landId);
     if (
-        !land ||                                         // 无领地
-        (landRegistry.isOperator(uuid)) ||               // 管理员
-        (land->getPermType(uuid) == LandPermType::Actor) // 主人/成员
+        !land ||                                          // 无领地
+        (landRegistry.isOperator(uuid)) ||                // 管理员
+        (land->getEffectiveRole(uuid) != LandRole::Actor) // 主人/成员
     ) {
         return true;
     }
